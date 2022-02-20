@@ -1,27 +1,25 @@
 # Path to oh-my-zsh installation
-#export ZSH=$HOME/.config/oh-my-zsh
 #PROMPT='%F{170}%n%f in %F{226}%~%f -> '
 TERM="xterm-256color"
+# Backup Prompt
 PROMPT='%F{170}%*%f:%F{blue}%~%f %F{105}->%F{15} '
 
 export FZF_BASE=/usr/local/bin/fzf
-plugins=(
-  git
-  fzf
-  osx
-  zsh-autosuggestions
-  zsh-syntax-highlighting  
-  copybuffer
-  vi-mode
-  hlissner/zsh-autopair
-)
+
+# For Mac:
+# --------
 source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-#
-## Loading oh-my-zsh
-#source $ZSH/oh-my-zsh.sh
+# For Linux:
+# ----------
+#source ~/.config/zsh/zsh-history-substring-search.zsh
+# https://github.com/zsh-users/zsh-history-substring-search
+#source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md
+#source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
 
 # Load aliases and shortcuts if existent.
 #[ -f "$HOME/.config/shortcutrc" ] && source "$HOME/.config/shortcutrc" 
@@ -76,3 +74,5 @@ function chpwd() {
 
 export PATH="$HOME/bin:$PATH"
 eval "$(starship init zsh)"
+# https://www.nerdfonts.com/font-downloads
+# https://starship.rs/guide/#🚀-installation
