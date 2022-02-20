@@ -1,0 +1,48 @@
+# go to previous tab{{{
+#--------------------
+
+lalt - h [
+    # go to next tmux window (use windows over tabs)
+    "iTerm2"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) - 1)
+    "Warp"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) - 1)
+    "Hyper"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) - 1)
+    "Kitty"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) - 1)
+    "Terminal"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) - 1)
+    # go to previous safari tab
+    #"safari"        : ~/bin/previousTab
+]
+lalt - j [
+    # go to next tmux window (use windows over tabs)
+    "iTerm2"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) - 1)
+    "Warp"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) - 1)
+    "Hyper"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) - 1)
+    "Kitty"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) - 1)
+    "Terminal"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) - 1)
+    # go to previous safari tab
+    #"safari"        : ~/bin/previousTab
+]
+#}}}
+# go to next tab{{{
+#--------------------
+
+lalt - l [
+    # go to next tmux window (use windows over tabs)
+    "iTerm2"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) + 1)
+    "Warp"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) + 1)
+    "Hyper"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) + 1)
+    "Kitty"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) + 1)
+    "Terminal"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) + 1)
+    # go to next safari tab
+    #"safari"        : ~/bin/nextTab
+]
+lalt - k [
+    # go to next tmux window (use windows over tabs)
+    "iTerm2"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) + 1)
+    "Warp"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) + 1)
+    "Hyper"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) + 1)
+    "Kitty"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) + 1)
+    "Terminal"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) + 1)
+    # go to next safari tab
+    #"safari"        : ~/bin/nextTab
+]
+#}}}

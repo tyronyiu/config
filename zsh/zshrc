@@ -1,0 +1,78 @@
+# Path to oh-my-zsh installation
+#export ZSH=$HOME/.config/oh-my-zsh
+#PROMPT='%F{170}%n%f in %F{226}%~%f -> '
+TERM="xterm-256color"
+PROMPT='%F{170}%*%f:%F{blue}%~%f %F{105}->%F{15} '
+
+export FZF_BASE=/usr/local/bin/fzf
+plugins=(
+  git
+  fzf
+  osx
+  zsh-autosuggestions
+  zsh-syntax-highlighting  
+  copybuffer
+  vi-mode
+  hlissner/zsh-autopair
+)
+source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+#
+## Loading oh-my-zsh
+#source $ZSH/oh-my-zsh.sh
+
+# Load aliases and shortcuts if existent.
+#[ -f "$HOME/.config/shortcutrc" ] && source "$HOME/.config/shortcutrc" 
+#[ -f "$HOME/.config/inputrc" ] && source "$HOME/.config/inputrc" 
+[ -f "$HOME/.config/zsh/zaliasrc" ] && source "$HOME/.config/zsh/zaliasrc"
+#[ -f "$HOME/.config/zextensions" ] && source "$HOME/.config/zextensions"
+
+# enable 'pass' extension 
+export PASSWORD_STORE_ENABLE_EXTENSIONS=true
+alias v=nvim
+export SKHDDIR=~/.config/skhd
+export NVIM=~/.config/nvim/
+# Unused
+# ---------------
+# Browser-Sync setup
+#export LOCAL_IP=`ipconfig getifaddr en0`
+
+HISTFILE=~/.history-zsh
+HISTSIZE=10000
+SAVEHIST=10000
+setopt append_history           # allow multiple sessions to append to one history
+setopt bang_hist                # treat ! special during command expansion
+setopt extended_history         # Write history in :start:elasped;command format
+setopt hist_expire_dups_first   # expire duplicates first when trimming history
+setopt hist_find_no_dups        # When searching history, don't repeat
+setopt hist_ignore_dups         # ignore duplicate entries of previous events
+setopt hist_ignore_space        # prefix command with a space to skip it's recording
+setopt hist_reduce_blanks       # Remove extra blanks from each command added to history
+setopt hist_verify              # Don't execute immediately upon history expansion
+setopt inc_append_history       # Write to history file immediately, not when shell quits
+setopt share_history            # Share history among all sessions
+
+# Tab completion
+autoload -Uz compinit && compinit
+setopt complete_in_word         # cd /ho/sco/tm<TAB> expands to /home/scott/tmp
+setopt auto_menu                # show completion menu on succesive tab presses
+setopt autocd                   # cd to a folder just by typing it's name
+ZLE_REMOVE_SUFFIX_CHARS=$' \t\n;&' # These "eat" the auto prior space after a tab complete
+
+autoload -U edit-command-line
+zle -N edit-command-line 
+bindkey -M vicmd v edit-command-line
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+function chpwd() {
+    emulate -L zsh
+    ls -a
+}
+
+export PATH="$HOME/bin:$PATH"
+eval "$(starship init zsh)"

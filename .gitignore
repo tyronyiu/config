@@ -1,0 +1,10 @@
+.DS_Store
+
+nvim/plugged/*
+nvim/plugged
+
+coc/extensions/node_modules/*
+coc/extensions/node_modules
+
+iterm2/AppSupport/*
+iterm2/AppSupport
