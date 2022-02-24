@@ -7,16 +7,6 @@ else
   export CLICOLOR=1
 fi
 
-# Aliases
-alias ls="ls ${lsflags} -G"
-alias ll="ls ${lsflags} -l"
-alias la="ls ${lsflags} -la"
-
-## Show hidden files ##
-alias l.='ls -d .* -G'
-
-alias ,="cd .."
-
 alias \
      nvim="/opt/homebrew/bin/nvim" \
      v="nvim" \
@@ -36,3 +26,19 @@ alias \
      gh="cd ~/" \
      gs="git status" \
      gb="cd ~/bin" \
+     lvim="/Users/tyyiu/.local/bin/lvim" \
+     exa="exa --icons --git"
+
+
+
+
+# Aliases
+alias ls="exa ${lsflags} --icons --git"
+alias ll="exa ${exaflags} --long"
+alias la="exa ${exaflags} -all"
+
+## Show hidden files ##
+alias l.='ls -d .* -G'
+
+alias ,="cd .."
+

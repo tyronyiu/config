@@ -248,11 +248,6 @@ set list
 "let g:nnn#layout = { 'window': { 'width': 0.7, 'height': 0.6, 'highlight': 'Debug' } }
 
 " }}}
-" Limelight {{{
-" -------------
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight! 
-"}}}
 "}}}
 " almanac {{{
 " -----------------------
