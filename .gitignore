@@ -8,3 +8,5 @@ coc/extensions/node_modules
 
 iterm2/AppSupport/*
 iterm2/AppSupport
+
+yarn/global/node_modules/*

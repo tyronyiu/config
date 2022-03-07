@@ -98,7 +98,8 @@ nnoremap <Leader>p :reg <CR>
 " -----------------------
 
 call plug#begin('~/.config/nvim/plugged')
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
+" If you have nodejs and yarn
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'vimpostor/vim-tpipeline'
 Plug 'yuezk/vim-js'
 Plug 'itchyny/lightline.vim'
@@ -248,6 +249,30 @@ set list
 "let g:nnn#layout = { 'window': { 'width': 0.7, 'height': 0.6, 'highlight': 'Debug' } }
 
 " }}}
+" Markdown-Preview {{{
+" set to 1, nvim will open the preview window after entering the markdown buffer
+" default: 0
+let g:mkdp_auto_start = 1
+
+" set to 1, the nvim will auto close current preview window when change
+" from markdown buffer to another buffer
+" default: 1
+let g:mkdp_auto_close = 1
+
+" set to 1, the vim will refresh markdown when save the buffer or
+" leave from insert mode, default 0 is auto refresh markdown as you edit or
+" move the cursor
+" default: 0
+let g:mkdp_refresh_slow = 0
+
+" set to 1, echo preview page url in command line when open preview page
+" default is 0
+let g:mkdp_echo_preview_url = 1
+let g:mkdp_browser = 'Safari.app'
+" use a custom port to start server or random for empty
+"let g:mkdp_port = '8482'
+let g:mkdp_open_to_the_world = 1
+" }}}
 "}}}
 " almanac {{{
 " -----------------------
@@ -295,7 +320,7 @@ if (empty($TMUX))
   endif
 endif
 set background=dark    " Setting dark mode
-let g:gruvbox_contrast_dark = 'hard'
+"let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 " colorscheme ayu
     " required for ayu to work properly
@@ -432,7 +457,7 @@ hi VertSplit ctermbg=NONE guibg=NONE
 "  \ 'spinner': ['fg', 'Label'],
 "  \ 'header':  ['fg', 'Comment'] }
 
-" Dont know what this does
+" Don't know what this does
 "function! s:buflist()
 "  redir => ls
 "  silent ls

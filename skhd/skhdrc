@@ -9,7 +9,7 @@ lalt - h [
     "Kitty"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) - 1)
     "Terminal"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) - 1)
     # go to previous safari tab
-    #"safari"        : ~/bin/previousTab
+    "safari"        : ~/bin/previousTab
 ]
 lalt - j [
     # go to next tmux window (use windows over tabs)
@@ -19,7 +19,7 @@ lalt - j [
     "Kitty"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) - 1)
     "Terminal"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) - 1)
     # go to previous safari tab
-    #"safari"        : ~/bin/previousTab
+    "safari"        : ~/bin/previousTab
 ]
 #}}}
 # go to next tab{{{
@@ -33,7 +33,7 @@ lalt - l [
     "Kitty"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) + 1)
     "Terminal"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) + 1)
     # go to next safari tab
-    #"safari"        : ~/bin/nextTab
+    "safari"        : ~/bin/nextTab
 ]
 lalt - k [
     # go to next tmux window (use windows over tabs)
@@ -43,6 +43,6 @@ lalt - k [
     "Kitty"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) + 1)
     "Terminal"         : tmux select-window -t $(expr $(tmux list-windows | grep "*" | cut -d : -f1) + 1)
     # go to next safari tab
-    #"safari"        : ~/bin/nextTab
+    "safari"        : ~/bin/nextTab
 ]
 #}}}
