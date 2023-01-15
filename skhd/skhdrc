@@ -1,3 +1,31 @@
+# swap window {{{
+#--------------------
+
+shift + alt - h : yabai -m window --swap west
+shift + alt - j : yabai -m window --swap south
+shift + alt - k : yabai -m window --swap north
+shift + alt - l : yabai -m window --swap east
+
+#}}}
+
+
+
+
+# focus window{{{
+#--------------------
+
+fn - h : yabai -m window --focus west
+fn - r : yabai -m window --focus recent
+fn - j : yabai -m window --focus south
+fn - k : yabai -m window --focus north
+fn - l : yabai -m window --focus east
+fn - n : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[sort_by(.id, .frame) | reverse | .[] | select(.role == \"AXWindow\" and .subrole == \"AXStandardWindow\") | .id] | nth(index($(yabai -m query --windows --window | jq -re ".id")) - 1)")"
+fn - p : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[sort_by(.id, .frame) | .[] | select(.role == \"AXWindow\" and .subrole == \"AXStandardWindow\") | .id] | nth(index($(yabai -m query --windows --window | jq ".id")) - 1)")"
+cmd + shift - k : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[sort_by(.id, .frame) | reverse | .[] | select(.role == \"AXWindow\" and .subrole == \"AXStandardWindow\") | .id] | nth(index($(yabai -m query --windows --window | jq ".id")) - 1)")"
+cmd + shift - j : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[sort_by(.id, .frame) | .[] | select(.role == \"AXWindow\" and .subrole == \"AXStandardWindow\") | .id] | nth(index($(yabai -m query --windows --window | jq ".id")) - 1)")"
+#}}}
+
+
 # go to previous tab{{{
 #--------------------
 
@@ -46,3 +74,95 @@ lalt - k [
     "safari"        : ~/bin/nextTab
 ]
 #}}}
+
+# fast focus desktop {{{
+#--------------------
+
+cmd - h : yabai -m space --focus prev
+lcmd - j : yabai -m space --focus prev
+lcmd - k : yabai -m space --focus next
+lcmd - l : yabai -m space --focus next
+#cmd + alt - x : yabai -m space --focus recent
+#cmd + alt - z : yabai -m space --focus prev
+#cmd + alt - c : yabai -m space --focus next
+cmd + alt - 1 : yabai -m space --focus 1
+cmd + alt - 2 : yabai -m space --focus 2
+cmd + alt - 3 : yabai -m space --focus 3
+cmd + alt - 4 : yabai -m space --focus 4
+cmd + alt - 5 : yabai -m space --focus 5
+cmd + alt - 6 : yabai -m space --focus 6
+cmd + alt - 7 : yabai -m space --focus 7
+cmd + alt - 8 : yabai -m space --focus 8
+cmd + alt - 9 : yabai -m space --focus 9
+#cmd + alt - 0 : yabai -m space --focus 10
+
+#}}}
+
+# send window to desktop and follow focus{{{
+#--------------------
+
+shift + cmd - x : yabai -m window --space recent; yabai -m space --focus recent
+#shift + cmd - z : yabai -m window --space prev; yabai -m space --focus prev
+shift + cmd - c : yabai -m window --space next; yabai -m space --focus next
+shift + cmd - 1 : yabai -m window --space  1; yabai -m space --focus 1
+shift + cmd - 2 : yabai -m window --space  2; yabai -m space --focus 2
+shift + cmd - 3 : yabai -m window --space  3; yabai -m space --focus 3
+shift + cmd - 4 : yabai -m window --space  4; yabai -m space --focus 4
+shift + cmd - 5 : yabai -m window --space  5; yabai -m space --focus 5
+shift + cmd - 6 : yabai -m window --space  6; yabai -m space --focus 6
+#shift + cmd - 7 : yabai -m window --space  7; yabai -m space --focus 7
+shift + cmd - 8 : yabai -m window --space  8; yabai -m space --focus 8
+shift + cmd - 9 : yabai -m window --space  9; yabai -m space --focus 9
+shift + cmd - 0 : yabai -m window --space 10; yabai -m space --focus 10
+
+#}}}
+
+# desktop layout{{{
+#--------------------
+
+ctrl + alt - b : yabai -m space --layout bsp
+ctrl + alt - f : yabai -m space --layout float
+ctrl + alt - w : chunkc tiling::desktop --deserialize ~/.chunkwm_layouts/dev_1
+
+# rotate tree
+alt - r : yabai -m space --rotate 90
+
+# mirror tree y-axis
+alt - y : yabai -m space --mirror y-axis
+
+# mirror tree x-axis
+alt - x : yabai -m space --mirror x-axis
+
+# toggle float
+alt - f : yabai -m window --toggle float
+
+# toggle window fullscreen zoom
+#fn - f : yabai -m window --toggle zoom-fullscreen
+
+# toggle topmost (keep above other windows)
+alt - o : yabai -m window --toggle topmost
+
+# toggle sticky, topmost and resize to picture-in-picture size
+cmd + alt - p : yabai -m window --toggle sticky;\
+          yabai -m window --toggle topmost;\
+          yabai -m window --toggle border;\
+          yabai -m window --toggle pip
+
+# float / unfloat window and center on screen
+#alt - t : yabai -m window --toggle float;\
+#          yabai -m window --grid 6:6:1:1:4:4
+#
+# balance size of windows
+shift + alt - 0 : yabai -m space --balance
+
+#}}}
+
+cmd - y [
+    # copies url from safari tab
+    "safari": $(echo "- [$(osascript -e 'tell application "Safari" to return name of front document')]($(osascript -e 'tell application "Safari" to return URL of front document'))" | pbcopy)
+    # -- $(osascript -e 'tell application "Safari" to return name of front document')" 
+]
+
+fn - f : yabai -m window --toggle topmost;\
+         yabai -m window --toggle zoom-fullscreen;\
+         yabai -m window --toggle topmost

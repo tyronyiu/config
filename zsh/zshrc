@@ -22,12 +22,12 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
 
 # Load aliases and shortcuts if existent.
-#[ -f "$HOME/.config/shortcutrc" ] && source "$HOME/.config/shortcutrc" 
-#[ -f "$HOME/.config/inputrc" ] && source "$HOME/.config/inputrc" 
+#[ -f "$HOME/.config/shortcutrc" ] && source "$HOME/.config/shortcutrc"
+#[ -f "$HOME/.config/inputrc" ] && source "$HOME/.config/inputrc"
 [ -f "$HOME/.config/zsh/zaliasrc" ] && source "$HOME/.config/zsh/zaliasrc"
 #[ -f "$HOME/.config/zextensions" ] && source "$HOME/.config/zextensions"
 
-# enable 'pass' extension 
+# enable 'pass' extension
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 alias v=nvim
 export SKHDDIR=~/.config/skhd
@@ -60,13 +60,17 @@ setopt autocd                   # cd to a folder just by typing it's name
 ZLE_REMOVE_SUFFIX_CHARS=$' \t\n;&' # These "eat" the auto prior space after a tab complete
 
 autoload -U edit-command-line
-zle -N edit-command-line 
+zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# Use for brew installed NVM
+#export NVM_DIR="$HOME/.nvm"
+#  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+#  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 function chpwd() {
     emulate -L zsh
     exa --icons --git
@@ -77,3 +81,16 @@ export PATH="$HOME/bin:$PATH"
 eval "$(starship init zsh)"
 # https://www.nerdfonts.com/font-downloads
 # https://starship.rs/guide/#🚀-installation
+
+# Enable Ctrl-x-e to edit command line
+autoload -U edit-command-line
+# Emacs style
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
+
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+source /opt/homebrew/Cellar/z/1.9/etc/profile.d/z.sh

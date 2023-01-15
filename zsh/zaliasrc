@@ -1,16 +1,14 @@
 # GNU and BSD (macOS) ls flags aren't compatible
-ls --version &>/dev/null
-if [ $? -eq 0 ]; then
-  lsflags="--color --group-directories-first -F"
-else
-  lsflags="-GF"
-  export CLICOLOR=1
-fi
+#ls --version &>/dev/null
+#if [ $? -eq 0 ]; then
+#  lsflags="--color --group-directories-first -F"
+#else
+#  lsflags="-GF"
+#  export CLICOLOR=1
+#fi
 
 alias \
-     nvim="/opt/homebrew/bin/nvim" \
      v="nvim" \
-     vim="nvim" \
      szrc="source ~/.zshrc" \
      svrc="source ~/.config/nvim/init.vim" \
      yy="echo -e '!!' | pbcopy" \
@@ -23,7 +21,6 @@ alias \
      esrc="nvim ~/.config/skhd/skhdrc" \
      ebmks="nvim ~/.config/bookmarks" \
      copyLastCmd="fc -ln -1 | awk '{\$1=\$1}1' | tr -d "\n" | pbcopy " \
-     gh="cd ~/" \
      gs="git status" \
      gb="cd ~/bin" \
      lvim="/Users/tyyiu/.local/bin/lvim" \
@@ -33,9 +30,9 @@ alias \
 
 
 # Aliases
-alias ls="exa ${lsflags} --icons --git"
-alias ll="exa ${exaflags} --long"
-alias la="exa ${exaflags} -all"
+alias ls="exa --header --sort 'created' --accessed --icons --git"
+alias ll="exa --header --sort 'created' --accessed --icons --git --long"
+alias la="exa --header --sort 'created' --accessed --icons --git --long --all"
 
 ## Show hidden files ##
 alias l.='ls -d .* -G'
