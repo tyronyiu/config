@@ -47,6 +47,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
+  use 'junegunn/vim-easy-align'
 
   use("github/copilot.vim") -- Github Copilot
   use('mbbill/undotree') -- better undoing / redoing
@@ -55,8 +56,8 @@ require('packer').startup(function(use)
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
-  use 'rcarriga/nvim-notify' -- notifications
-  vim.notify = require("notify")
+  --use 'rcarriga/nvim-notify' -- notifications
+  --vim.notify = require("notify")
   use({
     'rose-pine/neovim',
     as = 'rose-pine',
@@ -64,13 +65,17 @@ require('packer').startup(function(use)
       vim.cmd('colorscheme rose-pine')
     end
   })
-
+  use { "nvim-telescope/telescope-file-browser.nvim" }
 
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
+
+--use { 'godlygeek/tabular' }
+--use { 'preservim/vim-markdown' }
+use { 'epwalsh/obsidian.nvim'}
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
@@ -103,6 +108,24 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   group = packer_group,
   pattern = vim.fn.expand '$MYVIMRC',
 })
+require("telescope").load_extension "file_browser"
+require("telescope").setup {
+  extensions = {
+    file_browser = {
+      theme = "rose-pine",
+      -- disables netrw and use telescope-file-browser in its place
+      hijack_netrw = true,
+      -- mappings = {
+      --   ["i"] = {
+      --     -- your custom insert mode mappings
+      --   },
+      --   ["n"] = {
+      --     -- your custom normal mode mappings
+      --   },
+      -- },
+    },
+  },
+}
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -162,7 +185,13 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
-
+vim.keymap.set("n", "<leader>fb", ":Telescope file_browser<CR>")
+-- vim.api.nvim_set_keymap(
+--   "n",
+--   "<leader>b<CR>",
+--   ":Telescope file_browser",
+--   { noremap = true }
+-- )
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -221,36 +250,44 @@ local function remove_unused()
   vim.lsp.buf.execute_command(params)
 end
 
--- local fileSave_group = vim.api.nvim_create_augroup('saveActions', { clear = true })
--- vim.schedule(function()
---   vim.api.nvim_create_autocmd("BufWritePre", {
---     group = fileSave_group,
---     pattern = "*.tsx, *.ts, *.js, *.jsx",
---     callback = function(_)
---       vim.lsp.buf.format()
---       vim.notify("formatted file..", "info", {
---         title = "save action"
---       })
---       organize_imports()
---       vim.notify("organised imports..", "info", {
---         title = "save action"
---       })
---       fix_all()
---       vim.notify("fixed all..", "info", {
---         title = "save action"
---       })
---       add_missing_imports()
---       vim.notify("added missing imports..", "info", {
---         title = "save action"
---       })
---       remove_unused()
---       vim.notify("removed unused imports..", "info", {
---         title = "save action"
---       })
---     end,
---   })
--- end)
+local function EslintFixAll()
+  local params = {
+    command = "EslintFixAll",
+    arguments = { vim.api.nvim_buf_get_name(0) },
+    title = "ESLINTFIXALL"
+  }
+  vim.lsp.buf.execute_command(params)
+end
 
+-- local fileSave_group = vim.api.nvim_create_augroup('saveActions', { clear = true })
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   group = fileSave_group,
+--   pattern = "*.tsx, *.ts, *.js, *.jsx",
+--   callback = function(_)
+--       vim.lsp.buf.format()
+--       -- vim.notify("formatted file..", "info", {
+--       --   title = "save action"
+--       -- })
+--       organize_imports()
+--       -- vim.notify("organised imports..", "info", {
+--       --   title = "save action"
+--       -- })
+--       fix_all()
+--       -- vim.notify("fixed all..", "info", {
+--       --   title = "save action"
+--       -- })
+--       add_missing_imports()
+--       -- vim.notify("added missing imports..", "info", {
+--       --   title = "save action"
+--       -- })
+--       remove_unused()
+--       EslintFixAll()
+--       -- vim.notify("removed unused imports..", "info", {
+--       --   title = "save action"
+--       -- })
+--   end,
+-- })
+--
 -- local fileSave_group = vim.api.nvim_create_augroup('saveActions', { clear = true })
 -- vim.api.nvim_create_autocmd("BufWritePre", {
 --   group = fileSave_group,
@@ -280,6 +317,15 @@ require('lualine').setup {
     section_separators = '',
   },
 }
+
+require("obsidian").setup({
+  dir = "~/repos/Obsidian/Mouseion",
+  completion = {
+    nvim_cmp = true, -- if using nvim-cmp, otherwise set to false
+  }
+})
+
+vim.api.nvim_set_keymap('v', 'ga', '<Plug>(EasyAlign)', { noremap = false, silent = true })
 
 -- Enable Comment.nvim
 require('Comment').setup()
@@ -336,6 +382,8 @@ vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+
+--vim.keymap.set('n', '<leader>m', '', { silent = true })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -428,7 +476,7 @@ local on_attach = function(_, bufnr)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
 
-  vim.api.nvim_buf_create_user_command(bufnr, "Organise imports", function(_)
+  vim.api.nvim_buf_create_user_command(bufnr, "OrganiseImports", function(_)
     local params = {
       command = "_typescript.organizeImports",
       arguments = { vim.api.nvim_buf_get_name(0) },
@@ -437,7 +485,7 @@ local on_attach = function(_, bufnr)
     vim.lsp.buf.execute_command(params)
   end, { desc = "Organise imports in current buffer with LSP" })
 
-  vim.api.nvim_buf_create_user_command(bufnr, "Fix all", function(_)
+  vim.api.nvim_buf_create_user_command(bufnr, "FixAll", function(_)
     local params = {
       command = "_typescript.FixAll",
       arguments = { vim.api.nvim_buf_get_name(0) },
@@ -446,7 +494,7 @@ local on_attach = function(_, bufnr)
     vim.lsp.buf.execute_command(params)
   end, { desc = "Fix all in current buffer with LSP" })
 
-  vim.api.nvim_buf_create_user_command(bufnr, "Add missing imports", function(_)
+  vim.api.nvim_buf_create_user_command(bufnr, "AddMissingImports", function(_)
     local params = {
       command = "_typescript.AddMissingImports",
       arguments = { vim.api.nvim_buf_get_name(0) },
@@ -455,7 +503,7 @@ local on_attach = function(_, bufnr)
     vim.lsp.buf.execute_command(params)
   end, { desc = "Add missing imports in current buffer with LSP" })
 
-  vim.api.nvim_buf_create_user_command(bufnr, "Remove unused", function(_)
+  vim.api.nvim_buf_create_user_command(bufnr, "RemoveUnused", function(_)
     local params = {
       command = "_typescript.RemoveUnused",
       arguments = { vim.api.nvim_buf_get_name(0) },
@@ -513,7 +561,14 @@ local servers = {
   -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
-  -- tsserver = {},
+  tsserver = {},
+  graphql = {},
+  eslint = {
+    codeActionOnSave = {
+      enable = true,
+      mode = "all"
+    },
+  },
 
   sumneko_lua = {
     Lua = {
@@ -549,7 +604,7 @@ mason_lspconfig.setup_handlers {
     }
   end,
 }
-
+-- autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll
 -- Turn on lsp status information
 require('fidget').setup()
 
@@ -595,6 +650,8 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

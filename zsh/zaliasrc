@@ -13,7 +13,7 @@ alias \
      svrc="source ~/.config/nvim/init.vim" \
      yy="echo -e '!!' | pbcopy" \
      gc="cd ~/.config" \
-     evrc="nvim ~/.config/nvim/init.vim" \
+     evrc="nvim ~/.config/nvim/init.lua" \
      earc="nvim ~/.config/zsh/zaliasrc" \
      ezrc="nvim ~/.config/zsh/zshrc" \
      szrc="source ~/.config/zsh/zshrc" \
