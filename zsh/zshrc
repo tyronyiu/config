@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # Path to oh-my-zsh installation
 #PROMPT='%F{170}%n%f in %F{226}%~%f -> '
 TERM="xterm-256color"
@@ -29,7 +31,6 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # enable 'pass' extension
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
-alias v=nvim
 export SKHDDIR=~/.config/skhd
 export NVIM=~/.config/nvim/
 # Unused
@@ -94,3 +95,6 @@ export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 source /opt/homebrew/Cellar/z/1.9/etc/profile.d/z.sh
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
