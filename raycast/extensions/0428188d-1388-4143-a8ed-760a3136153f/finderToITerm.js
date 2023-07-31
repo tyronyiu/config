@@ -27,4 +27,4 @@
             tell current session to write text "clear; cd " & pathList
             end tell
         end tell
-    `;try{let e=await l(t);await(0,n.showToast)(n.Toast.Style.Success,"Done",e)}catch{await(0,n.showToast)(n.Toast.Style.Failure,"Something went wrong")}};0&&(module.exports={});
+    `;try{let e=await l(t);await(0,n.showToast)(n.Toast.Style.Success,"Done",e)}catch{await(0,n.showToast)(n.Toast.Style.Failure,"Something went wrong")}};

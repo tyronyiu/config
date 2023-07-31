@@ -8,4 +8,4 @@
           write text "open -a Finder ./"
       end tell
       end tell
-  `;try{let t=await a(e);await(0,n.showToast)(n.Toast.Style.Success,"Done",t)}catch{await(0,n.showToast)(n.Toast.Style.Failure,"Something went wrong")}};0&&(module.exports={});
+  `;try{let t=await a(e);await(0,n.showToast)(n.Toast.Style.Success,"Done",t)}catch{await(0,n.showToast)(n.Toast.Style.Failure,"Something went wrong")}};

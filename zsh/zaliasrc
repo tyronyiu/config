@@ -8,8 +8,7 @@
 #fi
 
 alias \
-     lvim="/Users/tyyiu/.local/bin/lvim" \
-     v="lvim" \
+     v="nvim" \
      szrc="source ~/.zshrc" \
      svrc="source ~/.config/nvim/init.vim" \
      yy="echo -e '!!' | pbcopy" \

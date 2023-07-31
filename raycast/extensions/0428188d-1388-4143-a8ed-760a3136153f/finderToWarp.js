@@ -9,4 +9,4 @@
     `;o+=`
         set command to "open -a /Applications/Warp.app " & pathList
         do shell script command
-    `;try{let t=await p(o);await(0,r.showToast)(r.Toast.Style.Success,"Done",t)}catch{await(0,r.showToast)(r.Toast.Style.Failure,"Something went wrong")}};0&&(module.exports={});
+    `;try{let t=await p(o);await(0,r.showToast)(r.Toast.Style.Success,"Done",t)}catch{await(0,r.showToast)(r.Toast.Style.Failure,"Something went wrong")}};

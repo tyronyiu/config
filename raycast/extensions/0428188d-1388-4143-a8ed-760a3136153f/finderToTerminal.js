@@ -23,4 +23,4 @@
                 end tell
             end if
         end tell
-    `;try{let t=await l(e);await(0,o.showToast)(o.Toast.Style.Success,"Done",t)}catch{await(0,o.showToast)(o.Toast.Style.Failure,"Something went wrong")}};0&&(module.exports={});
+    `;try{let t=await l(e);await(0,o.showToast)(o.Toast.Style.Success,"Done",t)}catch{await(0,o.showToast)(o.Toast.Style.Failure,"Something went wrong")}};

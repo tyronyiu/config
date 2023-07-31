@@ -21,4 +21,4 @@
           tell current session to write text command
           end tell
       end tell
-  `;try{let s=await c(e);await(0,i.showToast)(i.Toast.Style.Success,"Done",s)}catch{await(0,i.showToast)(i.Toast.Style.Failure,"Something went wrong")}};0&&(module.exports={});
+  `;try{let s=await c(e);await(0,i.showToast)(i.Toast.Style.Success,"Done",s)}catch{await(0,i.showToast)(i.Toast.Style.Failure,"Something went wrong")}};

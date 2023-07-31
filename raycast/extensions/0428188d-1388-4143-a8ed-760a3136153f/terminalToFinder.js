@@ -6,4 +6,4 @@
       tell application "Terminal"
       do script "open -a Finder ./" in first window
       end tell
-  `;try{let t=await c(n);await(0,e.showToast)(e.Toast.Style.Success,"Done",t)}catch{await(0,e.showToast)(e.Toast.Style.Failure,"Something went wrong")}};0&&(module.exports={});
+  `;try{let t=await c(n);await(0,e.showToast)(e.Toast.Style.Success,"Done",t)}catch{await(0,e.showToast)(e.Toast.Style.Failure,"Something went wrong")}};

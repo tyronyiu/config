@@ -4,4 +4,4 @@
         keystroke "open -a Finder ./"
         key code 36
       end tell
-  `;try{let t=await p(e);await(0,r.showToast)(r.Toast.Style.Success,"Done",t)}catch{await(0,r.showToast)(r.Toast.Style.Failure,"Something went wrong")}};0&&(module.exports={});
+  `;try{let t=await p(e);await(0,r.showToast)(r.Toast.Style.Success,"Done",t)}catch{await(0,r.showToast)(r.Toast.Style.Failure,"Something went wrong")}};

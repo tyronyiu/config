@@ -16,4 +16,4 @@
           end tell
       end if
       end tell
-  `;try{let o=await c(t);await(0,s.showToast)(s.Toast.Style.Success,"Done",o)}catch{await(0,s.showToast)(s.Toast.Style.Failure,"Something went wrong")}};0&&(module.exports={});
+  `;try{let o=await c(t);await(0,s.showToast)(s.Toast.Style.Success,"Done",o)}catch{await(0,s.showToast)(s.Toast.Style.Failure,"Something went wrong")}};
